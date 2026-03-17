@@ -4,6 +4,12 @@ A high-performance image processing application built with a **C++/OpenMP** back
 
 ---
 
+## 🌐 Live URLs
+- **Frontend (Vercel):** [https://parallel-image-processing-system.vercel.app/](https://parallel-image-processing-system.vercel.app/)
+- **Backend (Render):** [https://parallel-image-processing-system.onrender.com](https://parallel-image-processing-system.onrender.com)
+
+---
+
 ## 🏛️ System Architecture
 
 The system follows a **Client-Server Architecture** communicating over a RESTful API.
