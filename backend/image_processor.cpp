@@ -124,6 +124,56 @@ ProcessResult ImageProcessor::process(const std::string& image_data, const std::
             out_img.at<cv::Vec3b>(0, c) = cv::Vec3b(0, 0, 0);
             out_img.at<cv::Vec3b>(rows - 1, c) = cv::Vec3b(0, 0, 0);
         }
+    } else if (filter_type == "erosion" || filter_type == "dilation" || filter_type == "open" || filter_type == "close") {
+        int rows = img.rows;
+        int cols = img.cols;
+        int ksize = 3; 
+        int khalf = ksize / 2;
+        
+        cv::Mat temp_img = img.clone();
+        
+        auto apply_morph = [&](cv::Mat& src, cv::Mat& dst, bool is_erosion) {
+            #pragma omp parallel for if(use_parallel)
+            for (int r = 0; r < rows; ++r) {
+                for (int c = 0; c < cols; ++c) {
+                    uchar min_b = 255, min_g = 255, min_r = 255;
+                    uchar max_b = 0, max_g = 0, max_r = 0;
+                    
+                    for (int kr = -khalf; kr <= khalf; ++kr) {
+                        for (int kc = -khalf; kc <= khalf; ++kc) {
+                            int nr = r + kr;
+                            int nc = c + kc;
+                            if (nr >= 0 && nr < rows && nc >= 0 && nc < cols) {
+                                cv::Vec3b p = src.at<cv::Vec3b>(nr, nc);
+                                if (is_erosion) {
+                                    if (p[0] < min_b) min_b = p[0];
+                                    if (p[1] < min_g) min_g = p[1];
+                                    if (p[2] < min_r) min_r = p[2];
+                                } else {
+                                    if (p[0] > max_b) max_b = p[0];
+                                    if (p[1] > max_g) max_g = p[1];
+                                    if (p[2] > max_r) max_r = p[2];
+                                }
+                            }
+                        }
+                    }
+                    if (is_erosion) dst.at<cv::Vec3b>(r, c) = cv::Vec3b(min_b, min_g, min_r);
+                    else dst.at<cv::Vec3b>(r, c) = cv::Vec3b(max_b, max_g, max_r);
+                }
+            }
+        };
+
+        if (filter_type == "erosion") {
+            apply_morph(img, out_img, true);
+        } else if (filter_type == "dilation") {
+            apply_morph(img, out_img, false);
+        } else if (filter_type == "open") {
+            apply_morph(img, temp_img, true); // Erode
+            apply_morph(temp_img, out_img, false); // Dilate
+        } else if (filter_type == "close") {
+            apply_morph(img, temp_img, false); // Dilate
+            apply_morph(temp_img, out_img, true); // Erode
+        }
     }
 
     auto end_time = std::chrono::high_resolution_clock::now();

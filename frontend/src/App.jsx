@@ -190,14 +190,42 @@ function App() {
               <div className="border border-gray-400 p-2 relative bg-[#f5f5f5] mt-2">
                  <div className="absolute -top-2 left-2 bg-[#f0f0f0] px-1 text-[11px] font-medium">Morphological Operations</div>
                  <div className="mt-2 flex flex-col gap-1 pl-2">
-                    <label className="flex items-center gap-2 text-[11px]"><input type="checkbox" /> EROSION</label>
-                    <label className="flex items-center gap-2 text-[11px]"><input type="checkbox" /> DILATION</label>
-                    <label className="flex items-center gap-2 text-[11px]"><input type="checkbox" /> OPEN</label>
-                    <label className="flex items-center gap-2 text-[11px]"><input type="checkbox" /> CLOSE</label>
+                    <label className="flex items-center gap-2 text-[11px] cursor-pointer">
+                      <input 
+                        type="radio" 
+                        name="morphOp" 
+                        checked={activeFilter === 'erosion'} 
+                        onChange={() => {setActiveFilter('erosion'); setColorMode('rgb');}} 
+                      /> EROSION
+                    </label>
+                    <label className="flex items-center gap-2 text-[11px] cursor-pointer">
+                      <input 
+                        type="radio" 
+                        name="morphOp" 
+                        checked={activeFilter === 'dilation'} 
+                        onChange={() => {setActiveFilter('dilation'); setColorMode('rgb');}} 
+                      /> DILATION
+                    </label>
+                    <label className="flex items-center gap-2 text-[11px] cursor-pointer">
+                      <input 
+                        type="radio" 
+                        name="morphOp" 
+                        checked={activeFilter === 'open'} 
+                        onChange={() => {setActiveFilter('open'); setColorMode('rgb');}} 
+                      /> OPEN
+                    </label>
+                    <label className="flex items-center gap-2 text-[11px] cursor-pointer">
+                      <input 
+                        type="radio" 
+                        name="morphOp" 
+                        checked={activeFilter === 'close'} 
+                        onChange={() => {setActiveFilter('close'); setColorMode('rgb');}} 
+                      /> CLOSE
+                    </label>
                  </div>
                  <div className="flex items-center gap-2 mt-2">
                     <span className="text-[11px]">kernel size</span>
-                    <input type="number" defaultValue="3" className="w-10 border border-gray-400 px-1 text-xs" />
+                    <input type="number" defaultValue="3" className="w-10 border border-gray-400 px-1 text-xs" readOnly />
                  </div>
               </div>
 

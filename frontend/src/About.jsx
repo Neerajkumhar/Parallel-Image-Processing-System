@@ -145,23 +145,21 @@ function About() {
               </tr>
               <tr>
                 <th className="p-2 border-b border-[#a2a9b1] text-left align-top leading-tight">Website</th>
-                <td className="p-2 border-b border-[#a2a9b1] leading-tight text-blue-700 hover:underline">
-                  <a href="https://neerajkumhar.space" target="_blank" rel="noreferrer">neerajkumhar.space</a>
-                </td>
-              </tr>
-              <tr>
-                <th className="p-2 border-b border-[#a2a9b1] text-left align-top leading-tight">Report</th>
                 <td className="p-2 border-b border-[#a2a9b1] leading-tight">
-                  <a 
-                    href="/report.pdf" 
-                    download="Parallel_Processing_Report.pdf"
-                    className="inline-flex items-center gap-1 text-blue-700 hover:underline bg-blue-50 px-2 py-0.5 border border-blue-200 rounded-sm text-[10px] font-sans"
-                  >
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Download PDF
-                  </a>
+                  <div className="flex flex-col gap-2 font-sans">
+                    <a href="https://neerajkumhar.space" target="_blank" rel="noreferrer" className="text-blue-700 hover:underline">neerajkumhar.space</a>
+                    <a 
+                      href="/report.pdf" 
+                      download="Parallel_Processing_Report.pdf"
+                      className="inline-flex items-center gap-1 w-fit text-emerald-700 font-bold hover:underline bg-emerald-50 px-2 py-0.5 border border-emerald-200 rounded-sm text-[10px]"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                      Download Report PDF
+                    </a>
+                  </div>
                 </td>
               </tr>
+
               <tr>
                 <th colSpan="2" className="bg-[#eaecf0] py-1 text-center font-bold border-b border-[#a2a9b1] uppercase text-[10px] tracking-wide">
                   Technical Signature

@@ -51,6 +51,7 @@ The system follows a **Client-Server Architecture** communicating over a RESTful
 1.  **Grayscale Conversion**: Converts RGB images to grayscale using weighted luminance. Each row is processed in parallel using `#pragma omp parallel for`.
 2.  **Mean Blur (Box Filter)**: Applies a spatial smoothing effect. The workload is distributed across cores to handle large kernel convolutions efficiently.
 3.  **Sobel Edge Detection**: Calculates horizontal and vertical gradients to identify edges. Parallelism significantly reduces the time taken for gradient calculations.
+4.  **Morphological Operations**: Includes **Erosion**, **Dilation**, **Opening**, and **Closing**. These use structural elements to shape and process binary or grayscale images, with the computations parallelized over pixel neighborhoods.
 
 ### 📊 Performance Monitoring
 - The system captures the start and end ticks using `omp_get_wtime()`.
