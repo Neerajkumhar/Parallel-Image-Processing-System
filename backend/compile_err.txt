@@ -1,0 +1,142 @@
+g++.exe : In file included 
+from server.cpp:1:
+At line:1 char:1
++ & "C:\msys64\mingw64\bin\g+
++.exe" main.cpp 
+image_processor.cpp server 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (In file  
+   included from server.cp   
+ p:1::String) [], RemoteE    
+xception
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+httplib.h: In member 
+function 'bool httplib::detai
+l::mmap::open(const char*)':
+httplib.h:5307:14: error: 
+'::CreateFile2' has not been 
+declared; did you mean 
+'CreateFileW'?
+ 5307 |   hFile_ = 
+::CreateFile2(wpath.c_str(), 
+GENERIC_READ, 
+FILE_SHARE_READ,
+      |              
+^~~~~~~~~~~
+      |              
+CreateFileW
+server.cpp: In lambda 
+function:
+server.cpp:24:18: error: 
+'const struct 
+httplib::Request' has no 
+member named 'has_file'; did 
+you mean 'has_trailer'?
+   24 |         if 
+(!req.has_file("image")) {
+      |                  
+^~~~~~~~
+      |                  
+has_trailer
+server.cpp:30:32: error: 
+'const struct 
+httplib::Request' has no 
+member named 
+'get_file_value'; did you 
+mean 'get_trailer_value'?
+   30 |         const auto& 
+file = 
+req.get_file_value("image");
+      |                      
+          ^~~~~~~~~~~~~~
+      |                      
+          get_trailer_value
+server.cpp:31:34: error: 
+'const struct 
+httplib::Request' has no 
+member named 'has_file'; did 
+you mean 'has_trailer'?
+   31 |         std::string 
+filter = 
+req.has_file("filter") ? req.
+get_file_value("filter").cont
+ent : "grayscale";
+      |                      
+            ^~~~~~~~
+      |                      
+            has_trailer
+server.cpp:31:59: error: 
+'const struct 
+httplib::Request' has no 
+member named 
+'get_file_value'; did you 
+mean 'get_trailer_value'?
+   31 |         std::string 
+filter = 
+req.has_file("filter") ? req.
+get_file_value("filter").cont
+ent : "grayscale";
+      |                      
+                             
+        ^~~~~~~~~~~~~~
+      |                      
+                             
+        get_trailer_value
+server.cpp:34:17: error: 
+'const struct 
+httplib::Request' has no 
+member named 'has_file'; did 
+you mean 'has_trailer'?
+   34 |         if (req.has_f
+ile("use_parallel")) {
+      |                 
+^~~~~~~~
+      |                 
+has_trailer
+server.cpp:35:32: error: 
+'const struct 
+httplib::Request' has no 
+member named 
+'get_file_value'; did you 
+mean 'get_trailer_value'?
+   35 |             
+use_parallel = req.get_file_v
+alue("use_parallel").content 
+== "true";
+      |                      
+          ^~~~~~~~~~~~~~
+      |                      
+          get_trailer_value
+server.cpp:39:17: error: 
+'const struct 
+httplib::Request' has no 
+member named 'has_file'; did 
+you mean 'has_trailer'?
+   39 |         if (req.has_f
+ile("num_threads")) {
+      |                 
+^~~~~~~~
+      |                 
+has_trailer
+server.cpp:41:45: error: 
+'const struct 
+httplib::Request' has no 
+member named 
+'get_file_value'; did you 
+mean 'get_trailer_value'?
+   41 |                 
+num_threads = std::stoi(req.g
+et_file_value("num_threads").
+content);
+      |                      
+                       
+^~~~~~~~~~~~~~
+      |                      
+                       
+get_trailer_value
