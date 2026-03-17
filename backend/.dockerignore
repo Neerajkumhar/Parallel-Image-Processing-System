@@ -1,0 +1,6 @@
+build/
+*.exe
+*.o
+.git/
+.vscode/
+compile_err.txt

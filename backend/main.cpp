@@ -1,12 +1,19 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 // Forward declaration from server.cpp
 void start_server(int port);
 
 int main(int argc, char** argv) {
     int port = 8080;
-    if (argc > 1) {
+    
+    const char* env_port = std::getenv("PORT");
+    if (env_port != nullptr) {
+        try {
+            port = std::stoi(env_port);
+        } catch (...) {}
+    } else if (argc > 1) {
         try {
             port = std::stoi(argv[1]);
         } catch (...) {
